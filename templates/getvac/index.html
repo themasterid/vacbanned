@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Последние обновления на сайте{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+{% for post in steamids %}
+      <div class="card">
+      <div class="card-body">
+        {{ post.steamid }}
+        <a href="{% url 'getvac:post_detail' post.id %}">подробная информация</a> 
+      </div>
+    </div>
+  {% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+{% endblock %}

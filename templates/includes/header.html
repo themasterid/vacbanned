@@ -1,0 +1,44 @@
+{% load static %}
+{% block header %}
+<header>
+  <nav class="navbar navbar-light" style="background-color: lightskyblue">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span style="color:red">GET</span>VAC
+      </a>
+      <ul class="nav nav-pills">
+        {% with request.resolver_match.view_name as view_name %}
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Об авторе</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Технологии</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item"> 
+          <a class="nav-link {% if view_name == 'getvac:create' %}active{% endif %}" href="{% url 'getvac:create' %}">Новая запись</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Изменить пароль</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Выйти</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Пользователь: {{ user.username }}</a>
+        </li>
+        {% else %}
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Войти</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link link-light {% if view_name == 'getvac:index' %}active{% endif %}" href="{% url 'getvac:index' %}">Регистрация</a>
+        </li>
+        {% endif %}
+        {% endwith %}
+      </ul>
+    </div>
+  </nav>
+</header>
+{% endblock %}

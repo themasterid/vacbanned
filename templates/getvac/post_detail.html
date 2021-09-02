@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}СтимИД {{ post|truncatechars:30 }}{% endblock %}
+{% block content %}
+<div class="row">
+  <aside class="col-12 col-md-3">
+    <div class="card" style="width: 20rem;">
+    <img src={{ steamid_status.response.players.0.avatarfull }} class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ steamid_status.response.players.0.personaname }}</h5>
+        <p class="card-text">Статус VAC:
+            {% if vacstatus.players.0.VACBanned %}
+            <strong style="color:#FF0000">
+            Блокировка VAC
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            Блокировок нет
+            </strong>
+            {% endif %}
+        </p>
+        <p class="card-text">CommunityBanned:
+            {% if vacstatus.players.0.CommunityBanned %}
+            <strong style="color:#FF0000">
+            CommunityBanned
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            CommunityBanned
+            </strong>
+            {% endif %}
+        </p>
+        <p class="card-text">NumberOfVACBans:
+            {% if vacstatus.players.0.NumberOfVACBans %}
+            <strong style="color:#FF0000">
+            {{ vacstatus.players.0.NumberOfVACBans }}
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            {{ vacstatus.players.0.NumberOfVACBans }}
+            </strong>
+            {% endif %}
+        </p>
+        <p class="card-text">DaysSinceLastBan:
+            {% if vacstatus.players.0.DaysSinceLastBan > 0 %}
+            <strong style="color:#FF0000">
+            {{ vacstatus.players.0.DaysSinceLastBan }}
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            {{ vacstatus.players.0.DaysSinceLastBan }}
+            </strong>
+            {% endif %}
+        </p>
+        <p class="card-text">NumberOfGameBans:
+            {% if vacstatus.players.0.NumberOfGameBans > 0 %}
+            <strong style="color:#FF0000">
+            {{ vacstatus.players.0.NumberOfGameBans }}
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            {{ vacstatus.players.0.NumberOfGameBans }}
+            </strong>
+            {% endif %}
+        </p>
+        <p class="card-text">EconomyBan:
+            {% if vacstatus.players.0.EconomyBan != 'none' %}
+            <strong style="color:#FF0000">
+            Yes
+            </strong>
+            {% else %}
+            <strong style="color:#7fff00">
+            No
+            </strong>
+            {% endif %}
+        </p>
+        <a href={{ steamid_status.response.players.0.profileurl }} class="btn btn-primary" target="_blank">Посмотреть профиль</a>
+    </div>
+    </div>
+    <hr>
+    <div class="card" style="width: 20rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Разместил: {% if requser.get_full_name %}{{ requser.get_full_name }}{% else %} {{ requser }} {% endif %}</p></li>
+        <li class="list-group-item">Количество записей: {{ posts_count }}</p></li>
+    </ul>
+    </div>
+  </aside>
+  <article class="col-12 col-md-9">
+    {% include 'includes/info.html' %}
+    {% if post.author == requser %}
+    <a class="btn btn-primary" href="{% url 'getvac:edit' post.id %}">редактировать запись</a>
+    {% endif %}
+  </article>
+</div>
+{% endblock %}

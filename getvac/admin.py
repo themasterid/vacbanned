@@ -7,7 +7,6 @@ class SteamIDAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
         'steamid',
-        'vac_status',
         'pub_date',
         'author',
     )
