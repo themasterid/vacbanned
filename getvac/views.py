@@ -26,7 +26,7 @@ GPB = (
 
 
 def index(request):
-    steamids = SteamID.objects.all()[:5]
+    steamids = SteamID.objects.all()
     context = {'steamids': steamids, }
     return render(request, 'getvac/index.html', context)
 

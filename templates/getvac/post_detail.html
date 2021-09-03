@@ -18,18 +18,18 @@
             </strong>
             {% endif %}
         </p>
-        <p class="card-text">CommunityBanned:
+        <p class="card-text">Бан Сообщества:
             {% if vacstatus.players.0.CommunityBanned %}
             <strong style="color:#FF0000">
-            CommunityBanned
+            Забанен
             </strong>
             {% else %}
             <strong style="color:#7fff00">
-            CommunityBanned
+            Блокировок нет
             </strong>
             {% endif %}
         </p>
-        <p class="card-text">NumberOfVACBans:
+        <p class="card-text">Число VAC банов:
             {% if vacstatus.players.0.NumberOfVACBans %}
             <strong style="color:#FF0000">
             {{ vacstatus.players.0.NumberOfVACBans }}
@@ -40,7 +40,7 @@
             </strong>
             {% endif %}
         </p>
-        <p class="card-text">DaysSinceLastBan:
+        <p class="card-text">Дней в бане:
             {% if vacstatus.players.0.DaysSinceLastBan > 0 %}
             <strong style="color:#FF0000">
             {{ vacstatus.players.0.DaysSinceLastBan }}
@@ -51,7 +51,7 @@
             </strong>
             {% endif %}
         </p>
-        <p class="card-text">NumberOfGameBans:
+        <p class="card-text">Число игровых банов:
             {% if vacstatus.players.0.NumberOfGameBans > 0 %}
             <strong style="color:#FF0000">
             {{ vacstatus.players.0.NumberOfGameBans }}
@@ -62,14 +62,14 @@
             </strong>
             {% endif %}
         </p>
-        <p class="card-text">EconomyBan:
+        <p class="card-text">Трейд Бан:
             {% if vacstatus.players.0.EconomyBan != 'none' %}
             <strong style="color:#FF0000">
-            Yes
+            Да
             </strong>
             {% else %}
             <strong style="color:#7fff00">
-            No
+            Нет
             </strong>
             {% endif %}
         </p>
