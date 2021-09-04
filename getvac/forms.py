@@ -1,7 +1,7 @@
 # getvac/forms.py
 from django import forms
 
-from .models import SteamID
+from .models import SteamID, SteamInfo, VacInfo
 
 
 class RecordForm(forms.ModelForm):
@@ -22,6 +22,54 @@ class RecordForm(forms.ModelForm):
     class Meta:
         model = SteamID
         fields = ['steamid']
+        help_texts = {
+            'steamid': 'Введите Steam ID',
+        }
+
+
+class SteamInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = SteamInfo
+        fields = [
+            'steamid',
+            'communityvisibilitystate',
+            'profilestate',
+            'personaname',
+            'commentpermission',
+            'profileurl',
+            'avatar',
+            'avatarmedium',
+            'avatarfull',
+            'avatarhash',
+            'lastlogoff',
+            'personastate',
+            'realname',
+            'primaryclanid',
+            'timecreated',
+            'personastateflags',
+            'loccountrycode',
+            'locstatecode',
+            'loccityid'
+        ]
+        help_texts = {
+            'steamid': 'Введите Steam ID',
+        }
+
+
+class VacInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = VacInfo
+        fields = [
+            'steamid',
+            'CommunityBanned',
+            'VACBanned',
+            'NumberOfVACBans',
+            'DaysSinceLastBan',
+            'NumberOfGameBans',
+            'EconomyBan',
+        ]
         help_texts = {
             'steamid': 'Введите Steam ID',
         }
